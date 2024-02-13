@@ -8,7 +8,7 @@ from mininet.cli import CLI
 from mininet.node import RemoteController
 
 
-class part2_topo(Miniset):
+class part2_topo(Mininet):
     def build(self):
         s1 = self.addSwitch("s1")
         h1 = self.addHost("h1", mac="00:00:00:00:00:01", ip="10.0.1.2/24")

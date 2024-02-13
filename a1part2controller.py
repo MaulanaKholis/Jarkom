@@ -24,6 +24,16 @@ class Firewall(object):
         connection.addListeners(self)
 
         # add switch rules here
+        connection.send(of.ofp_flow_mod(action=of.ofp_action_output(port=of.OFPP_FLOOD),
+                                        priority=10,
+                                        match=of.ofp_match(dl_type=0x0800, nw_proto=1)))
+        connection.send(of.ofp_flow_mod(action=of.ofp_action_output(port=of.OFPP_FLOOD),
+                                        priority=9,
+                                        match=of.ofp_match(dl_type=0x0806, nw_proto=1)))
+        connection.send(of.ofp_flow_mod(action=of.ofp_action_output(port=of.OFPP_FLOOD),
+                                        priority=8,
+                                        match=of.ofp_match(dl_type=0x0800, nw_proto=1)))
+
 
     def _handle_PacketIn(self, event):
         """

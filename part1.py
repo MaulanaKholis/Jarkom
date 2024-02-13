@@ -6,8 +6,9 @@ from mininet.util import dumpNodeConnections
 from mininet.cli import CLI
 
 
-class part1_topo(Topo):
-    def build(self):
+class MyTopo(Topo):
+    def __init__(self):
+        Topo.__init__(self)
         s1 = self.addSwitch('s1')
         h1 = self.addHost('h1')
         h2 = self.addHost('h2')
@@ -19,11 +20,4 @@ class part1_topo(Topo):
         self.addLink(h4,s1)
 
 
-topos = {"part1": part1_topo}
-
-if __name__ == "__main__":
-    t = part1_topo()
-    net = Mininet(topo=t)
-    net.start()
-    CLI(net)
-    net.stop()
+topos = { 'mytopo': ( lambda: MyTopo() ) }
